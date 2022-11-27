@@ -81,8 +81,12 @@ WSGI_APPLICATION = 'straightAheadEcuador.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'straightAheadEcuador',
+        'USER': 'postgres',
+        'PASSWORD': 'consultoria',
+        'HOST': '23.236.63.201',
+        'PORT': '5432'
     }
 }
 
