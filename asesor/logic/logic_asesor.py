@@ -1,4 +1,6 @@
 from ..models import Asesor
+import isla.logic.isla_logic as isla_l
+
 
 def get_asesores():
     asesores = Asesor.objects.all()
@@ -15,7 +17,7 @@ def create_asesor(asesor):
         apellido = asesor['apellido'],
         correo = asesor['correo'],
         tipoDocumento = asesor['tipoDocumento'],
-        isla = asesor['isla']
+        isla = isla_l.get_isla_by_id(asesor['isla'])
     )
     asesor_obj.save()
     return asesor_obj
