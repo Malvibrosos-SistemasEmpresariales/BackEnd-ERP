@@ -2,7 +2,7 @@ import json
 from http.client import HTTPResponse
 from django.shortcuts import render
 from django.core import serializers
-from logic import lg
+from .logic import logic_asesor as lg
 
 def asesores_view(request):
     if request.method == 'GET':
