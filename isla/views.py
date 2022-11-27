@@ -2,7 +2,7 @@ import json
 from django.shortcuts import render
 from django.core import serializers
 from http.client import HTTPResponse
-from .logic import logic_isla as lg
+from .logic import isla_logic as lg
 
 def islas_view(request):
     if request.method == 'GET':
