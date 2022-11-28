@@ -10,7 +10,6 @@ def get_islas():
 
 def create_isla(isla):
     isla_obj = Isla(
-        id = isla['id'],
         centroComercial = isla['centroComercial'],
         ciudad = isla['ciudad']
     )
