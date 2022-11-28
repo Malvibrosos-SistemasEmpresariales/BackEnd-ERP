@@ -13,7 +13,8 @@ def create_cliente(cliente):
         nombre = cliente['nombre'],
         apellido = cliente['apellido'],
         correo = cliente['correo'],
-        tipoDocumento = cliente['tipoDocumento']
+        tipoDocumento = cliente['tipoDocumento'],
+        id = cliente['id']
     )
     cliente_obj.save()
     return cliente_obj
