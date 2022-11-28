@@ -1,4 +1,5 @@
 from ..models import Factura
+from ..models import FacturaDetalle
 
 def get_factura_by_id(id):
     factura = Factura.objects.get(pk=id)
