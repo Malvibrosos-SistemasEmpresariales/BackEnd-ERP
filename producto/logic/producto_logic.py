@@ -10,7 +10,7 @@ def get_producto_by_id(id):
 
 def create_producto(producto):
     producto_obj = Producto(
-        id = producto['id'],
+        codigo = producto['codigo'],
         nombre = producto['nombre'],
         valor = producto['valor'],
         categoria = producto['categoria'],
