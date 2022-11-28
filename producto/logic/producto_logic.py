@@ -13,8 +13,7 @@ def create_producto(producto):
         id = producto['id'],
         nombre = producto['nombre'],
         valor = producto['valor'],
-        descripcion = producto['descripcion'],
-        tipo = producto['tipo']
+        categoria = producto['categoria'],
     )
     producto_obj.save()
     return producto_obj
