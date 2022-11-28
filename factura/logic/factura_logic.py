@@ -17,13 +17,13 @@ def create_factura(factura):
         cliente = factura['cliente'],
         asesor = factura['asesor']   
     )
+    isla_obj.save()
     for n in factura['factura_detalle']:
             detalle = FacturaDetalle(
                 cantidad = n['cantidad'],
                 total = n['total'],
-                factura = n['factura'],
+                factura = factura['id'],
                 producto = n['producto']
             )
             detalle.save()
-    isla_obj.save()
     return isla_obj
