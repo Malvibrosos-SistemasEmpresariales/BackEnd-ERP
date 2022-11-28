@@ -10,15 +10,15 @@ def islas_view(request):
     if request.method == 'GET':
         islas = lg.get_islas()
         islas_dto = serializers.serialize('json', islas)
-        return HTTPResponse(islas_dto, content_type='application/json')
+        return HTTPResponse(islas_dto, 'application/json')
     elif request.method == 'POST':
         isla_dto = lg.create_isla(json.loads(request.body))
         isla = serializers.serialize('json', [isla_dto])
-        return HTTPResponse(isla, content_type='application/json')
+        return HTTPResponse(isla, 'application/json')
 
 @csrf_exempt
 def isla_view(request, id):
     if request.method == 'GET':
         isla = lg.get_isla_by_id(id)
         isla_dto = serializers.serialize('json', [isla])
-        return HTTPResponse(isla_dto, content_type='application/json')
+        return HTTPResponse(isla_dto, 'application/json')
