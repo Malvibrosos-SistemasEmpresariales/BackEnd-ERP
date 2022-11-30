@@ -15,6 +15,15 @@ def get_movimientos_by_id_producto(id):
     movimientos = InventarioMovimientos.objects.filter(producto=id)
     return movimientos
 
+def create_movimiento(movimiento):
+    movimiento_obj = InventarioMovimientos(
+        cantidad = movimiento['cantidad'],
+        fecha = movimiento['fecha'],
+        inventario = get_inventarios_by_id(movimiento['inventario'])
+    )
+    movimiento_obj.save()
+    return movimiento_obj
+
 def create_inventario(inventario):
     inventario_obj = Inventario(
         cantidad = inventario['cantidad'],

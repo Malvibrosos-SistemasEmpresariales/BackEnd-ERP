@@ -29,3 +29,10 @@ def movimientos_productos_view(request, id):
         movimientos = lg.get_movimientos_by_id_producto(id)
         movimientos_dto = serializers.serialize('json', movimientos)
         return HttpResponse(movimientos_dto, 'application/json')
+
+@csrf_exempt
+def movimientos_view(request):
+    if request.method == 'POST':
+        movimiento_dto = lg.create_movimiento(json.loads(request.body))
+        movimiento = serializers.serialize('json', [movimiento_dto])
+        return HttpResponse(movimiento, 'application/json')
