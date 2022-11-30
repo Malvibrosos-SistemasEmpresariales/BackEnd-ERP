@@ -3,7 +3,9 @@ from django.shortcuts import render
 from django.core import serializers
 from django.http import HttpResponse
 from .logic import inventario_logic as lg
+from django.views.decorators.csrf import csrf_exempt
 
+@csrf_exempt
 def inventarios_view(request):
     if request.method == 'GET':
         inventarios = lg.get_inventarios()
@@ -14,6 +16,7 @@ def inventarios_view(request):
         inventario = serializers.serialize('json', [inventario_dto])
         return HttpResponse(inventario, 'application/json')
 
+@csrf_exempt
 def inventario_view(request, id):
     if request.method == 'GET':
         inventario = lg.get_inventario_by_id(id)
