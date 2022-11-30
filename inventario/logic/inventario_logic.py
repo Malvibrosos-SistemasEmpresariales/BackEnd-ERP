@@ -1,6 +1,7 @@
 from ..models import Inventario
 from isla.logic import isla_logic
 from producto.logic import producto_logic
+from ..models import InventarioMovimientos
 
 def get_inventarios():
     inventarios = Inventario.objects.all()
@@ -9,6 +10,10 @@ def get_inventarios():
 def get_inventarios_by_id(id):
     inventario = Inventario.objects.get(pk=id)
     return inventario
+
+def get_movimientos_by_id_producto(id):
+    movimientos = InventarioMovimientos.objects.filter(producto=id)
+    return movimientos
 
 def create_inventario(inventario):
     inventario_obj = Inventario(
