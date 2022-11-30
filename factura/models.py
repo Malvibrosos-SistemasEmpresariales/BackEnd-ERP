@@ -10,7 +10,8 @@ class Factura(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     asesor = models.ForeignKey(Asesor, on_delete=models.CASCADE)
     #TODO:Corregir error de migracion  return datetime.date.fromisoformat(value) TypeError: fromisoformat: argument must be str
-    
+    class Meta:
+        ordering = ('-fecha',)
     def __str__(self):
         return '{}'.format(self.id)
 
