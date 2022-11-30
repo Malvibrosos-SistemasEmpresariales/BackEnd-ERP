@@ -13,7 +13,7 @@ def get_inventarios_by_id(id):
     return inventario
 
 def get_movimientos_by_id_producto(id):
-    movimientos = InventarioMovimientos.objects.filter(producto=id)
+    movimientos = InventarioMovimientos.objects.filter(inventario=id)
     return movimientos
 
 def create_movimiento(movimiento):
