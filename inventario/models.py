@@ -12,6 +12,6 @@ class Inventario(models.Model):
 class InventarioMovimientos(models.Model):
     cantidad = models.IntegerField()
     fecha = models.DateField()
-    inventario = models.ForeignKey(Inventario, on_delete=models.CASCADE)
+    inventario = models.ForeignKey(Inventario, on_delete=models.CASCADE, to_field='producto')
     def __str__(self):
         return '{}'.format(self.nombre)
