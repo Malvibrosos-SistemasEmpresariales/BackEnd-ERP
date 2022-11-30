@@ -24,7 +24,7 @@ def inventario_view(request, id):
         return HttpResponse(inventario_dto,'application/json')
 
 @csrf_exempt
-def movimientos_view(request, id):
+def movimientos_productos_view(request, id):
     if request.method == 'GET':
         movimientos = lg.get_movimientos_by_id_producto(id)
         movimientos_dto = serializers.serialize('json', movimientos)
