@@ -5,10 +5,12 @@ from producto.models import Producto
 
 class Factura(models.Model):
     id = models.AutoField(primary_key=True)
-    fecha = models.CharField(max_length=10)
+    fecha = models.DateField()
     total = models.FloatField()
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     asesor = models.ForeignKey(Asesor, on_delete=models.CASCADE)
+    #TODO:Corregir error de migracion  return datetime.date.fromisoformat(value) TypeError: fromisoformat: argument must be str
+    
     def __str__(self):
         return '{}'.format(self.id)
 

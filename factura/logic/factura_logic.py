@@ -3,6 +3,7 @@ from ..models import FacturaDetalle
 from cliente.logic import cliente_logic as cl
 from asesor.logic import logic_asesor as al
 from producto.logic import producto_logic as pl
+from django.utils.dateparse import parse_date
 
 def get_factura_by_id(id):
     factura = Factura.objects.get(pk=id)
@@ -29,7 +30,7 @@ def create_factura_detail(detail, factura_):
 def create_factura(factura):
     isla_obj = Factura(
         id = factura['id'],
-        fecha = factura['fecha'],
+        fecha = parse_date(factura['fecha']),
         total = factura['total'],
         cliente = cl.get_cliente_by_id(factura['cliente']),
         asesor = al.get_asesor_by_id(factura['asesor']) 
