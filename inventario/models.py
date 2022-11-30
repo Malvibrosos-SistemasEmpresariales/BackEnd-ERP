@@ -5,7 +5,7 @@ from producto.models import Producto
 class Inventario(models.Model):
     cantidad = models.IntegerField()
     isla = models.ForeignKey(Isla, on_delete=models.CASCADE)
-    producto = models.ForeignKey(Producto, on_delete=models.CASCADE, primary_key= True, unique=True)
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE, primary_key= True, unique=True, to_field='codigo')
     def __str__(self):
         return '{}'.format(self.nombre)
 
