@@ -2,6 +2,7 @@ from ..models import Inventario
 from isla.logic import isla_logic
 from producto.logic import producto_logic
 from ..models import InventarioMovimientos
+from django.utils.dateparse import parse_date
 
 def get_inventarios():
     inventarios = Inventario.objects.all()
@@ -18,7 +19,7 @@ def get_movimientos_by_id_producto(id):
 def create_movimiento(movimiento):
     movimiento_obj = InventarioMovimientos(
         cantidad = movimiento['cantidad'],
-        fecha = movimiento['fecha'],
+        fecha = parse_date(movimiento['fecha']),
         inventario = get_inventarios_by_id(movimiento['inventario'])
     )
     movimiento_obj.save()
