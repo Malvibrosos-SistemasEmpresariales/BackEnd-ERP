@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from asesor.models import Asesor
-from cliente.models import Cliente 
+from cliente.models import Cliente
+from inventario.models import Inventario, InventarioMovimientos 
 from producto.models import Producto
 from factura.models import Factura, FacturaDetalle
 from isla.models import Isla
@@ -58,5 +59,19 @@ class FacturaDetailSerializer(serializers.ModelSerializer):
                   'valor',
                   'producto')
 
+class InventarioSerializer(serializers.ModelSerializer):
+    producto = ProductoSerializer(many=False)
+    isla = IslaSerializer(many=False)
+    class Meta:
+        model = Inventario
+        fields = ('cantidad',
+                  'isla',
+                  'producto')
+
+class InventarioDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = InventarioMovimientos
+        fields = ('cantidad',
+                  'fecha')
 
 
