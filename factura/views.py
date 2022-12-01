@@ -24,8 +24,14 @@ def facturas_view(request):
 def factura_view(request, id):
     if request.method == 'GET':
         factura = lg.get_factura_by_id(id)
-        facturas_serializer = FacturaSerializer(factura, many=False)
-        return JsonResponse(facturas_serializer.data, safe=False)
+        factura_detail = lg.get_factura_detail_by_id_factura(id)
+        list_detail = []
+        for detail in factura_detail:
+            list_detail.append(
+                FacturaDetailSerializer(detail).data)
+        facturas_serializer = FacturaSerializer(factura, many=False).data
+        facturas_serializer['factura_detalle'] = list_detail
+        return JsonResponse(facturas_serializer, safe=False)
 
 @csrf_exempt
 def factura_detail_view(request, id):
