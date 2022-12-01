@@ -17,6 +17,6 @@ class Factura(models.Model):
 
 class FacturaDetalle(models.Model):
     cantidad = models.IntegerField()
-    total = models.FloatField()
+    valor = models.FloatField()
     factura = models.ForeignKey(Factura, on_delete=models.CASCADE)
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE, to_field='codigo')

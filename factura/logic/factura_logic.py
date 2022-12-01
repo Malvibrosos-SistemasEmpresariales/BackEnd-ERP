@@ -24,7 +24,7 @@ def get_facturas():
 def create_factura_detail(detail, factura_):
     detalle = FacturaDetalle(
         cantidad = detail['cantidad'],
-        total = detail['total'],
+        valor = detail['valor'],
         factura = factura_,
         producto = pl.get_producto_by_id(detail['producto'])
     )

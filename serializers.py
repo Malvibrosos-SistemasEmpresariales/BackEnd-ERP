@@ -14,6 +14,6 @@ class FacturaDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = FacturaDetalle
         fields = ('cantidad',
-                  'total',
+                  'valor',
                   'factura',
                   'producto')
