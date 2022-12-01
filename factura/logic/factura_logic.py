@@ -13,6 +13,10 @@ def get_factura_detail_by_id_factura(id):
     factura_detail = FacturaDetalle.objects.filter(factura=id)
     return factura_detail
 
+def get_factura_by_date(date):
+    facturas = Factura.objects.filter(fecha=date)
+    return facturas
+
 def get_facturas():
     facturas = Factura.objects.all()
     return facturas

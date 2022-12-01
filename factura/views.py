@@ -33,3 +33,9 @@ def factura_detail_view(request, id):
         factura_detail = lg.get_factura_detail_by_id_factura(id)
         factura_detail_serializer = FacturaDetailSerializer(factura_detail, many=True)
         return JsonResponse(factura_detail_serializer.data, safe=False)
+
+def factura_view_by_date(request, date):
+    if request.method == 'GET':
+        facturas = lg.get_factura_by_date(date)
+        facturas_serializer = FacturaSerializer(facturas, many=True)
+        return JsonResponse(facturas_serializer.data, safe=False)
