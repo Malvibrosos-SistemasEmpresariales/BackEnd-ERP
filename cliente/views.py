@@ -2,6 +2,7 @@ import json
 from django.shortcuts import render
 from django.core import serializers
 from django.http import HttpResponse
+from django.http.response import JsonResponse
 
 from serializers import ClienteSerializer
 from .logic import cliente_logic as lg
@@ -12,7 +13,7 @@ def clientes_view(request):
     if request.method == 'GET':
         clientes = lg.get_clientes()
         clientes_dto = ClienteSerializer(clientes, many=True)
-        return HttpResponse(clientes_dto.data,'application/json')
+        return JsonResponse(clientes_dto.data, safe=False)
     elif request.method == 'POST':
         cliente_dto = lg.create_cliente(json.loads(request.body))
         cliente = serializers.serialize('json', [cliente_dto])
@@ -23,4 +24,4 @@ def cliente_view(request, id):
     if request.method == 'GET':
         cliente = lg.get_cliente_by_id(id)
         cliente_dto = ClienteSerializer(cliente, many=False)
-        return HttpResponse(cliente_dto.data, content_type='application/json')
+        return JsonResponse(cliente_dto.data, safe=False)
