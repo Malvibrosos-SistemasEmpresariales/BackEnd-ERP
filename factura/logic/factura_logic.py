@@ -4,9 +4,8 @@ from isla.models import Isla
 from producto.models import Producto
 from ..models import Factura
 from ..models import FacturaDetalle
-from cliente.logic import cliente_logic as cl
-from asesor.logic import logic_asesor as al
-from producto.logic import producto_logic as pl
+from inventario.models import InventarioMovimientos
+from inventario.logic import inventario_logic as il
 from django.utils.dateparse import parse_date
 
 def delete_factura(id):
@@ -39,7 +38,14 @@ def create_factura_detail(detail, factura_):
                             valor = detail['producto']['valor'],
                             categoria = detail['producto']['categoria'])
     )
+    inventarios = il.get_inventarios_by_id(detail['producto']['codigo'])
+    movimiento = InventarioMovimientos(cantidad = -int(detail['cantidad']),
+                              fecha = parse_date('2022-12-01'),
+                              inventario = inventarios)
+    inventarios.cantidad = inventarios.cantidad - int(detail['cantidad'])
+    inventarios.save()
     detalle.save()
+    movimiento.save()
     return detalle
 
 def create_factura(factura):

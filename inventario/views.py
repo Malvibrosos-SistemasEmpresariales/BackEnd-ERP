@@ -46,3 +46,7 @@ def movimientos_view(request):
         movimiento_dto = lg.create_movimiento(json.loads(request.body))
         movimiento = serializers.serialize('json', [movimiento_dto])
         return HttpResponse(movimiento, 'application/json')
+    elif request.method == 'GET':
+        movimientos = lg.get_movimientos()
+        movimientos_dto = InventarioDetailSerializer(movimientos, many=True)
+        return JsonResponse(movimientos_dto.data, safe=False)
