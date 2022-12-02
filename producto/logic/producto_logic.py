@@ -5,6 +5,7 @@ def get_productos():
     return productos
 
 def get_producto_by_id(id):
+    id = id.upper()
     producto = Producto.objects.get(pk=id)
     return producto
 
