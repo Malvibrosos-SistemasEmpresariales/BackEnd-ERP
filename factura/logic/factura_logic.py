@@ -44,6 +44,7 @@ def create_factura_detail(detail, factura_):
 
 def create_factura(factura):
     isla_obj = Factura(
+        id = factura['id'],
         fecha = parse_date('2022-12-01'),
         total = factura['total'],
         cliente = Cliente(
