@@ -1,8 +1,9 @@
 from django.shortcuts import render
 import json
 from django.core import serializers
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.http.response import JsonResponse
+from django.urls import reverse
 from .logic import factura_logic as lg
 from django.views.decorators.csrf import csrf_exempt
 from serializers import FacturaSerializer, FacturaDetailSerializer
@@ -32,6 +33,9 @@ def factura_view(request, id):
         facturas_serializer = FacturaSerializer(factura, many=False).data
         facturas_serializer['factura_detalle'] = list_detail
         return JsonResponse(facturas_serializer, safe=False)
+    elif request.method == 'DELETE':
+        factura = lg.delete_factura(id)
+        return JsonResponse({'message': '{} Factura were deleted successfully!'.format(id)})
 
 @csrf_exempt
 def factura_detail_view(request, id):

@@ -4,6 +4,10 @@ from producto.logic import producto_logic
 from ..models import InventarioMovimientos
 from django.utils.dateparse import parse_date
 
+def delete_inventario(id):
+    inventario = Inventario.objects.get(pk=id)
+    inventario.delete()
+    
 def get_inventarios():
     inventarios = Inventario.objects.all()
     return inventarios

@@ -29,6 +29,9 @@ def inventario_view(request, id):
         inventario_dto = InventarioSerializer(inventario, many=False).data
         inventario_dto['movimientos'] = list_movimientos
         return JsonResponse(inventario_dto, safe=False)
+    elif request.method == 'DELETE':
+        inventario = lg.delete_inventario(id)
+        return JsonResponse({'message': '{} Inventarios were deleted successfully!'.format(id)})
 
 @csrf_exempt
 def movimientos_productos_view(request, id):
